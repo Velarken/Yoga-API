@@ -10,7 +10,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.get('/', poseAPI.getAllPoses)
+app.get('/', ( req, res ) => {
+    res.json({
+        intro: 'Welcome to my yoga pose API!',
+        routes: {
+            allPoses: 'https://yoga-api-js6z.onrender.com/poses',
+            authentication: 'https://yoga-api-js6z.onrender.com/account'
+        }
+    })
+})
+app.get('/poses', poseAPI.getAllPoses)
 
 // server
 app.listen(process.env.SERVER_PORT, (err) => {
