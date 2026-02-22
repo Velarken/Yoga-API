@@ -1,11 +1,18 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('node:path');
 require('dotenv').config();
 const poseAPI = require('./db/queries.js')
 
 const app = express();
 
+const corsOptions = {
+    origin: 'localhost:5173',
+    optionsSuccessStatus: 200
+}
+
 // middlewares
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
